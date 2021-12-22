@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+<_locDefinition xmlns="urn:locstudio">
+    <_locDefault _loc="locNone" />
+    <_locTag _loc="locData">Title</_locTag>
+    <_locTag _loc="locData">Description</_locTag>
+    <_locTag _loc="locData">Author</_locTag>
+    <_locTag _loc="locData">ToolTip</_locTag>
+</_locDefinition>
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Get Sleep Queries</Title>
+			<Shortcut>slpQuery</Shortcut>
+			<Description>Get Sleep Queries</Description>
+			<Author>Ahmet Emin ŞİT</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Code Language="SQL">
+				<![CDATA[select 
+	db_name(s.database_id) as DatabaseName,
+	st.text,
+	s.session_id
+from sys.dm_exec_connections as c
+join sys.dm_exec_sessions as s on s.session_id = c.session_id
+outer apply sys.dm_exec_sql_text(most_recent_sql_handle) as st
+--WHERE ST.text LIKE '%TempLoop%'
+order by DatabaseName;$end$]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+				<Title>Select Join</Title>
+				<Shortcut>selectJoin</Shortcut>
+				<Description>Select Join</Description>
+				<Author>Ahmet Emin ŞİT</Author>
+				<SnippetTypes>
+					<SnippetType>SurroundsWith</SnippetType>
+				</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>mainTableName</ID>
+					<Default>mainTableName</Default>
+				</Literal>
+				<Literal>
+					<ID>relationTableName</ID>
+					<Default>relationTableName</Default>
+				</Literal>
+				<Literal>
+					<ID>relationColumn</ID>
+					<Default>relationColumn</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="SQL"><![CDATA[select top (1000) *
+from $mainTableName$ mt with(nolock)
+join $relationTableName$ rt with(nolock) on mt.Id = rt.$relationColumn$
+where 1=1;]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+				<Title>add constraint</Title>
+				<Shortcut>addCons</Shortcut>
+				<Description>add constraint PK</Description>
+				<Author>Ahmet Emin ŞİT</Author>
+				<SnippetTypes>
+					<SnippetType>SurroundsWith</SnippetType>
+				</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>tableName</ID>
+					<Default>tableName</Default>
+				</Literal>
+				<Literal>
+					<ID>columnName</ID>
+					<Default>columnName</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="SQL"><![CDATA[alter table $tableName$ 
+add constraint PK_$tableName$ primary key ($columnName$)]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

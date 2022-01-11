@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+<_locDefinition xmlns="urn:locstudio">
+    <_locDefault _loc="locNone" />
+    <_locTag _loc="locData">Title</_locTag>
+    <_locTag _loc="locData">Description</_locTag>
+    <_locTag _loc="locData">Author</_locTag>
+    <_locTag _loc="locData">ToolTip</_locTag>
+</_locDefinition>
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Get Default Constraint</Title>
+			<Shortcut>gDConstraint</Shortcut>
+			<Description>Get Default Constraint</Description>
+			<Author>Ahmet Emin ŞİT</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Code Language="SQL">
+				<![CDATA[select con.[name] as constraint_name,
+    schema_name(t.schema_id) + '.' + t.[name]  as [table],
+    col.[name] as column_name,
+    con.[definition],
+	con.type_desc,
+	col.max_length,
+	col.is_nullable
+from sys.default_constraints con
+    left outer join sys.objects t
+        on con.parent_object_id = t.object_id
+    left outer join sys.all_columns col
+        on con.parent_column_id = col.column_id
+        and con.parent_object_id = col.object_id
+order by con.name;$end$]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
